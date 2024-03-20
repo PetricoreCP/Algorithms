@@ -2,10 +2,29 @@
 #include <vector>
 #include <utility>
 #include <queue>
+#include <limits>
 
 template <typename T, typename U>
-std::vector <long long> Dijkstra(T start, std::vector <std::vector <std::pair <T, U>>> & adj) {
-    // Implementing ...
+std::vector <U> Dijkstra(T start, std::vector <std::vector <std::pair <T, U>>> & adj) {
+    std::vector <U> dist(adj.size() + 1, std::numeric_limits <U>::max());
+    dist[start] = 0;
+
+    std::priority_queue <std::pair <U, T>, std::vector <std::pair <U, T>>, std::greater <std::pair <U, T>>> pq;
+    pq.push(std::make_pair(0, start));
+
+    while(!pq.empty()) {
+        auto [w, e] = pq.top();
+        pq.pop();
+        if(w > dist[e]) continue;
+        for(auto [next, nw] : adj[e]) {
+            if(dist[next] > nw + w) {
+                dist[next] = nw + w;
+                pq.push(std::make_pair(dist[next], next));
+            }
+        }
+    }
+
+    return dist;
 }
 
 void Main() {
@@ -22,7 +41,12 @@ void Main() {
 
     std::vector <long long> dist = Dijkstra(1, adj);
     for(int next = 1; next <= n; next ++) {
-        std::cout << dist[next] << ' ';
+        if(dist[next] < std::numeric_limits <long long>::max()) {
+            std::cout << dist[next] << ' ';
+        }
+        else {
+            std::cout << -1 << ' ';
+        }
     }
 }
 
