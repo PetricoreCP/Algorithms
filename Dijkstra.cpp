@@ -15,7 +15,9 @@ std::vector <U> Dijkstra(T start, std::vector <std::vector <std::pair <T, U>>> &
     while(!pq.empty()) {
         auto [w, e] = pq.top();
         pq.pop();
+        
         if(w > dist[e]) continue;
+        
         for(auto [next, nw] : adj[e]) {
             if(dist[next] > nw + w) {
                 dist[next] = nw + w;
@@ -32,14 +34,17 @@ void Main() {
     std::cin >> n >> m;
 
     std::vector <std::vector <std::pair <int, long long>>> adj(n + 1);
+    
     for(int i = 0; i < m; i ++) {
         int a, b, w;
         std::cin >> a >> b >> w;
+        
         adj[a].push_back(std::make_pair(b, w));
         adj[b].push_back(std::make_pair(a, w));
     }
 
     std::vector <long long> dist = Dijkstra(1, adj);
+    
     for(int next = 1; next <= n; next ++) {
         if(dist[next] < std::numeric_limits <long long>::max()) {
             std::cout << dist[next] << ' ';
