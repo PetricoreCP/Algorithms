@@ -1,48 +1,37 @@
 #include <iostream>
 #include <vector>
 
-template <typename T>
-std::vector <bool> Sieve(T n) {
-    std::vector <bool> prime(n + 1, true);
-    prime[0] = prime[1] = false;
+using namespace std;
 
-    for(T p = 2; p * p <= n; p ++) {
+vector <bool> Sieve(int n) {
+    vector <bool> prime(n + 1, true);
+    prime[0] = prime[1] = false;
+    for(int p = 2; p * p <= n; p ++) {
         if(prime[p]) {
-            for(T m = p * p; m <= n; m += p) {
+            for(int m = p * p; m <= n; m += p) {
                 prime[m] = false;
             }
         }
     }
-
     return prime;
 }
 
-void Main() {
-    int n;
-    std::cin >> n;
-
-    std::vector <bool> prime = Sieve(n);
-
-    for(int p = 1; p <= n; p ++) {
-        if(prime[p]) {
-            std::cout << p << ' ';
-        }
-    }
-}
-
 int main() {
-    std::ios::sync_with_stdio(0);
-    std::cin.tie(0);
-
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
     //freopen("input.txt", "r", stdin);
     //freopen("output.txt", "w", output);
-    
-    int t = 1;
-    //std::cin >> t;
-
-    while(t--) {
-        Main();
+    int tc = 1;
+    //cin >> tc;
+    while(tc--) {
+        int n;
+        cin >> n;
+        vector <bool> prime = Sieve(n);
+        for(int p = 2; p <= n; p ++) {
+            if(prime[p]) {
+                cout << p << ' ';
+            }
+        }
     }
-
     return 0;
 }
