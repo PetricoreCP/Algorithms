@@ -27,11 +27,6 @@ int main() {
         int n;
         cin >> n;
         vector <bool> prime = Sieve(n);
-        for(int p = 2; p <= n; p ++) {
-            if(prime[p]) {
-                cout << p << ' ';
-            }
-        }
     }
     return 0;
 }
