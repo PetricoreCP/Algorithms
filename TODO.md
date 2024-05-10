@@ -1,10 +1,8 @@
-1) Minimum Spanning Tree Kruskal Algorithm and Prim
-2) Binary Lifting LCA
-3) Modular Inverse
-4) Ternary Search
-5) Fermat Theorem
-6) Euler Theorem
-7) String Hashing
-8) Fenwick Tree
-9) Segment Tree
-10) Bellman Ford Algorithm
+1) Binary Lifting LCA
+2) Modular Inverse
+3) Ternary Search
+4) Fermat Theorem
+5) Euler Theorem
+6) String Hashing
+7) Fenwick Tree
+8) Segment Tree
