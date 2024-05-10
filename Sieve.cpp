@@ -1,8 +1,3 @@
-#include <iostream>
-#include <vector>
-
-using namespace std;
-
 vector <bool> Sieve(int n) {
     vector <bool> prime(n + 1, true);
     prime[0] = prime[1] = false;
@@ -14,19 +9,4 @@ vector <bool> Sieve(int n) {
         }
     }
     return prime;
-}
-
-int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-    //freopen("input.txt", "r", stdin);
-    //freopen("output.txt", "w", output);
-    int tc = 1;
-    //cin >> tc;
-    while(tc--) {
-        int n;
-        cin >> n;
-        vector <bool> prime = Sieve(n);
-    }
-    return 0;
 }
