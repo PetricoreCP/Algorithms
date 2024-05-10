@@ -7,3 +7,4 @@
 7) String Hashing
 8) Fenwick Tree
 9) Segment Tree
+10) Bellman Ford Algorithm
