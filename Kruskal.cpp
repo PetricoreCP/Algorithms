@@ -35,7 +35,7 @@ long long Kruskal(vector<tuple<long long, int, int>> & edg, int n) {
     sort(edg.begin(), edg.end());
     Dsu dsu(n);
     long long res = 0;
-    for (auto & e : edg) {
+    for (tuple<long long, int, int> & e : edg) {
         long long w = get<0>(e);
         int u = get<1>(e);
         int v = get<2>(e);
