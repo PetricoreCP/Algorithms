@@ -1,12 +1,12 @@
 vector <bool> Sieve(int n) {
-    vector <bool> prime(n + 1, true);
-    prime[0] = prime[1] = false;
+    vector <bool> v(n + 1, true);
+    v[0] = v[1] = false;
     for(int p = 2; p * p <= n; p ++) {
-        if(prime[p]) {
+        if(v[p]) {
             for(int m = p * p; m <= n; m += p) {
-                prime[m] = false;
+                v[m] = false;
             }
         }
     }
-    return prime;
+    return v;
 }
