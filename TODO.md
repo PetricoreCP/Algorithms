@@ -1,4 +1,4 @@
-1) Minimum Spanning Tree Kruskal Algorithm
+1) Minimum Spanning Tree Kruskal Algorithm and Prim
 2) Binary Lifting LCA
 3) Modular Inverse
 4) Ternary Search
