@@ -7,7 +7,7 @@ void Dfs(vector<vector<int>> & adj, int node) {
     while(!s.empty()) {
         node = s.top();
         s.pop();
-        for(int next : adj[node]) {
+        for(int & next : adj[node]) {
             if(!vis[next]) {
                 vis[next] = true;
                 s.push(next);
@@ -25,7 +25,7 @@ void Bfs(vector<vector<int>> & adj, int node) {
     while(!q.empty()) {
         node = q.front();
         q.pop();
-        for(int next : adj[node]) {
+        for(int & next : adj[node]) {
             if(!vis[next]) {
                 vis[next] = true;
                 q.push(next);
