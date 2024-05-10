@@ -24,7 +24,7 @@ public:
     bool join(int u, int v) {
         int a = find(u), b = find(v);   
         if(a == b) return false;
-        if(sz[a] < sz[b]) std::swap(a, b);
+        if(sz[a] < sz[b]) swap(a, b);
         sz[a] += sz[b];
         p[b] = a;
         return true;
