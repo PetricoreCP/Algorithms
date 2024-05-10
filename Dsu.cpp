@@ -1,8 +1,3 @@
-#include <iostream>
-#include <vector>
-
-using namespace std;
-
 class Dsu {
 private:
     vector<int> p, sz;
@@ -35,18 +30,3 @@ public:
         return true;
     }
 };
-
-int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-    //freopen("input.txt", "r", stdin);
-    //freopen("output.txt", "w", output);
-    int tc = 1;
-    //cin >> tc;
-    while(tc--) {
-        int n;
-        cin >> n;
-        Dsu dsu(n);
-    }
-    return 0;
-}
