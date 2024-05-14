@@ -33,21 +33,3 @@ public:
         return true;
     }
 };
-
-long long Kruskal(vector<tuple<long long, int, int>> & edg, int n) {
-    long long res = 0;
-    sort(edg.begin(), edg.end());
-    Dsu dsu(n);
-    
-    for (tuple<long long, int, int> & e : edg) {
-        long long w = get<0>(e);
-        int u = get<1>(e);
-        int v = get<2>(e);
-
-        if (dsu.join(u, v)) {
-            res += w;
-        }
-    }
-
-    return res;
-}
