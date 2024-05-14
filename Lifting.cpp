@@ -1,8 +1,3 @@
-#include <bits/stdc++.h>
-using namespace std;
-
-using i64 = int64_t;
-
 class BinaryLifting {
 private:
     int n, maxDepth = 0, maxStep = 0;
@@ -56,43 +51,3 @@ public:
         return node;
     }
 };
-
-int32_t main() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-
-    //freopen("input.txt", "r", stdin);
-    //freopen("output.txt", "w", stdout);
-
-    int tc = 1;
-    //cin >> tc;
-
-    while(tc--) {
-        int n, m;
-        cin >> n >> m;
-
-        vector<vector<int>> adj(n);
-        for(int i = 0; i < m; i ++) {
-            int u, v;
-            cin >> u >> v;
-            u --; v --;
-            adj[u].push_back(v);
-            adj[v].push_back(u);
-        }
-
-        BinaryLifting tree(adj, 0);
-
-        int q;
-        cin >> q;
-
-        for(int i = 0; i < q; i ++) {
-            int u, k;
-            cin >> u >> k;
-            u --;
-            int v = tree.GetAncestor(u, k);
-            cout << ((v == -1) ? v : v + 1) << '\n';
-        }
-    }
-
-    return 0;
-}
