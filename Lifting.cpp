@@ -17,10 +17,12 @@ private:
     }
 
     void BuildTrans() {
-        for(int node = 0; node < n; node ++) {
-            trans[node][0] = parents[node];
-            for(int step = 1; step < maxStep; step ++) {
-                trans[node][step] = trans[trans[node][step - 1]][step - 1];
+        for(int step = 0; step < maxStep; step ++) {
+            for(int node = 0; node < n; node ++) {
+                if(step == 0) trans[node][0] = parents[node];
+                else {
+                    trans[node][step] = trans[trans[node][step - 1]][step - 1];
+                }
             }
         }
     }   
@@ -34,7 +36,7 @@ public:
         Dfs(adj, root, root);
 
         while((1 << maxStep) <= maxDepth) maxStep ++;
-        trans.resize(n, vector<int>(maxStep));
+        trans.resize(n, vector<int>(maxStep, -1));
 
         BuildTrans();
     }
@@ -42,8 +44,8 @@ public:
     int GetAncestor(int node, int k) {
         if(depths[node] < k) return -1;
 
-        for(int bit = 0; bit < maxStep; bit ++) {
-            if((k >> bit) & 1) {
+        for(int bit = maxStep - 1; bit >= 0; bit --) {
+            if(k & (1LL << bit)) {
                 node = trans[node][bit];
             }
         }
