@@ -1,8 +1,7 @@
-1) Binary Lifting LCA
-2) Modular Inverse
-3) Ternary Search
-4) Fermat Theorem
-5) Euler Theorem
-6) String Hashing
-7) Fenwick Tree
-8) Segment Tree
+1) Modular Inverse
+2) Ternary Search
+3) Fermat Theorem
+4) Euler Theorem
+5) String Hashing
+6) Fenwick Tree
+7) Segment Tree
