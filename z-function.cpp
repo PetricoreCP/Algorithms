@@ -7,12 +7,12 @@ using i64 = int64_t;
 using vi32 = vector<i32>;
 
 #define FOR(i, a, b) for(i32 i = a; i < b; i ++)
-#define AUTO(a, x) for(auto & a : x)
+#define AUTO(a, x) for(auto &a : x)
 
 vi32 z_function(string & s) {
-    i32 n = s.length();
+    i32 n = s.length(), l = 0, r = 0;
     vi32 z(n);
-    i32 l = 0, r = 0;
+
     FOR(i, 1, n) {
         if(i < r) {
             z[i] = min(r - i, z[i - l]);
@@ -31,7 +31,9 @@ vi32 z_function(string & s) {
 void solve() {
     string s;
     cin >> s;
+
     vi32 z = z_function(s);
+
     AUTO(x, z) {
         cout << x << ' ';
     }
@@ -40,12 +42,16 @@ void solve() {
 i32 main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
+
     //freopen("input.txt", "r", stdin);
     //freopen("output.txt", "w", stdout);
+
     i64 tc = 1ll;
     //cin >> tc;
+
     while(tc--) {
         solve();
     }
+    
     return 0;
 }
