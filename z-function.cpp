@@ -25,6 +25,7 @@ vi32 z_function(string & s) {
             r = i + z[i];
         }
     }
+    
     return z;
 }
 
