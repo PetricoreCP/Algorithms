@@ -40,6 +40,8 @@ void solve() {
 i32 main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
+    //freopen("input.txt", "r", stdin);
+    //freopen("output.txt", "w", stdout);
     i64 tc = 1ll;
     //cin >> tc;
     while(tc--) {
