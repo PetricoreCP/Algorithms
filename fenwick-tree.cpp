@@ -22,11 +22,13 @@ struct FenwickTree {
     }
 
     FenwickTree(vi64 &a) : FenwickTree(SZ(a)) {
-        FOR(i, 1, SZ(a) + 1) {
-            bit[i] = a[i - 1];
-            i32 r = i + (i & -i);
-            if(r < SZ(a) + 1) {
-                bit[r] += bit[i];
+        F0R(i, SZ(a)) {
+            bit[i + 1] = a[i];
+        }
+        FOR(i, 1, SZ(bit)) {
+            i32 p = i + (i & -i);
+            if(p < SZ(bit)) {
+                bit[p] += bit[i];
             }
         }
     }
@@ -41,7 +43,7 @@ struct FenwickTree {
     }
 
     void add(i32 i, i64 x) {
-        while(i < bit.size()) {
+        while(i < SZ(bit)) {
             bit[i] += x;
             i += i & -i;
         }
