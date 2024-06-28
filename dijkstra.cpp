@@ -17,6 +17,7 @@ vector<i64> dijkstra(vector<vector<pair<i32, i64>>> &adj, i32 start) {
         pq.pop();
         i64 c = p.first;
         i32 node = p.second;
+        if(c >= cost[node]) continue;
         for(auto &q : adj[node]) {
             i32 next = q.first;
             i64 w = q.second;
