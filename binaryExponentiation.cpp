@@ -9,7 +9,7 @@ long long binExp(long long base, long long exp) {
 // Iterative Binary Exponentiation
 long long binExp(long long base, long long exp) {
 	long long ans = 1;
-	while(exp) {
+	while(exp > 0) {
 		if(exp & 1) ans *= base;
 		base *= base;
 		exp >>= 1;
@@ -21,7 +21,7 @@ long long binExp(long long base, long long exp) {
 long long binModExp(long long base, long long exp, long long mod) {
 	long long ans = 1;
 	base %= mod;
-	while(exp) {
+	while(exp > 0) {
 		if(exp & 1) ans = ans * base % mod;
 		base = base * base % mod; 
 		exp >>= 1;
@@ -40,7 +40,7 @@ vector<long long> apply(vector<long long> sequence, vector<long long> permutatio
 }
 
 vector<long long> permute(vector<long long> sequence, vector<long long> permutation, long long k) {
-    while(k) {
+    while(k > 0) {
         if(k & 1) sequence = apply(sequence, permutation);
         permutation = apply(permutation, permutation);
         k >>= 1;
@@ -62,7 +62,7 @@ long long modMul(long long a, long long b, long long mod) {
     a %= mod;
     b %= mod;
     long long ans = 0;
-    while(a) {
+    while(a > 0) {
         if(a % 2) ans = (ans + b) % mod;
         b = (b * 2) % mod;
         a >>= 1;
