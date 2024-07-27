@@ -47,3 +47,25 @@ vector<long long> permute(vector<long long> sequence, vector<long long> permutat
     }
     return sequence;
 }
+
+// Recursive Modular Multiplication
+long long modMul(long long a, long long b, long long mod){
+	a %= mod;
+	b %= mod;
+	if(a == 0 || b == 0) return 0;
+	if(a % 2) return (2 * modMul((a - 1) / 2, b) + b) % mod;
+	return (2 * modMul(a / 2, b)) % mod;
+}
+
+//Iterative Modular Multiplication
+long long modMul(long long a, long long b, long long mod) {
+    a %= mod;
+    b %= mod;
+    long long ans = 0;
+    while(a) {
+        if(a % 2) ans = (ans + b) % mod;
+        b = (b * 2) % mod;
+        a >>= 1;
+    }
+    return ans;
+}
