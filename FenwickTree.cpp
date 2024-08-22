@@ -1,53 +1,58 @@
-#include <bits/stdc++.h>
-
-using namespace std;
-
-using i32 = int32_t;
-using i64 = int64_t;
-
-template <typename T> struct FenwickTree {
-    i32 size, msb = 1;
+template<typename T> struct FenwickTree {
+    int sz, msb = 1;
     vector<T> tree;
 
-    FenwickTree(i32 n) {
-        size = n + 1;
-        tree.resize(size);
-        while((msb << 1) <= size) msb <<= 1;
+
+    FenwickTree(int n) {
+        sz = n + 1;
+        tree.resize(sz);
+        while((msb << 1) <= sz) msb <<= 1;
     }
+
     FenwickTree(vector<T> &v) : FenwickTree(v.size()) {
-        for(i32 i = 0; i < v.size(); i ++) tree[i + 1] = v[i];
-        for(i32 i = 1; i < size; i ++) {
-            i32 p = i + (i & -i);
-            if(p < size) tree[p] += tree[i];
+        for(int i = 0; i < v.size(); i ++) tree[i + 1] = v[i];
+        for(int i = 1; i < sz; i ++) {
+            int j = i + (i & -i);
+            if(j < sz) tree[j] += tree[i];
         }
     }
 
-    void add(i32 i, T x) {
-        while(i < size) {
+
+    void pointAdd(int i, T x) {
+        while(i < sz) {
             tree[i] += x;
             i += i & -i;
         }
     }
+
+    void pointUpdate(int i, T x) {
+        T delta = x - getSum(i, i);
+        pointAdd(i, delta);
+    }
+
     T prefixSum(i32 i) {
-        T tot = 0;
-        while(i) {
-            tot += tree[i];
+        T res = 0;
+        while(i > 0) {
+            res += tree[i];
             i -= i & -i;
         }
-        return tot;
+        return res;
     }
-    T getSum(i32 l, i32 r) {
-        return prefix(r) - prefix(l - 1);
+
+    T getSum(int l, int r) {
+        return prefixSum(r) - prefixSum(l - 1);
     }
-    i32 lowerBound(T x) {
-    	i32 curr = 0; 
-    	T tot = 0;
-    	for(i32 bit = msb; bit > 0; bit >>= 1) {
-      		if((curr | bit) <= size && tot + tree[curr | bit] < x) {
-        		curr |= bit; 
-        		tot += tree[curr];
-      		}
-    	}
-    	return curr + 1;
-  	}
+
+    int lowerBound(T x) {
+        int curr = 0; 
+        T tot = 0;
+        for(int bit = msb; bit > 0; bit >>= 1) {
+            if((curr | bit) < sz && tot + tree[curr | bit] < x) {
+                curr |= bit; 
+                tot += tree[curr];
+            }
+        }
+        if(tot < x) return -1;
+        return curr + 1;
+    }
 };
