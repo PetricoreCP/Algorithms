@@ -3,23 +3,34 @@ using namespace std;
 using ll = long long;
 const ll INF = 1e18;
 
-pair<vector<ll>, bool> bellmanFord(vector<tuple<int, int, ll>> &edges, int n, int start) {
-    bool negativeCylce = false;
+vector<ll> bellmanFord(vector<tuple<int, int, ll>> &edges, int n, int start) {
     vector<ll> distance(n, INF);
-    distance[start] = 0ll;
-    for(int i = 0; i < n; i ++) {
+    distance[start] = 0;
+    bool detection = false;
+    for(int i = 0; i < n - 1; i ++) {
+        bool converged = true;
         for(auto &edge : edges) {
             int u, v;
             ll w;
             tie(u, v, w) = edge;
-            //Negative Cylce detection
-            if(i == n - 1) {
-                if(distance[u] + w < distance[v]) negativeCylce = true;
+            if(distance[u] != INF && distance[v] > distance[u] + w) {
+                distance[v] = distance[u] + w;
+                converged = false;
             }
-            distance[v] = min(distance[v], distance[u] + w);
+        }
+        if(converged) break;
+    }
+    for(auto &edge : edges) {
+        int u, v;
+        ll w;
+        tie(u, v, w) = edge;
+        if(distance[v] > distance[u] + w) {
+            detection = true;
+            break;
         }
     }
-    return make_pair(distance, negativeCylce);
+    if(detection) distance[start] = -1;
+    return distance;
 }
 
 void testCase() {
@@ -32,9 +43,17 @@ void testCase() {
         u --; v --;
         edges[i] = make_tuple(u, v, w);
     }
-    pair<vector<ll>, bool> distance = bellmanFord(edges, n, 0);
-    if(distance.second) cout << "Negative Cycle Detected\n";
-    for(int i = 0; i < n; i ++) cout << distance.first[i] << ' ';
+    int start = 0;
+    vector<ll> distance = bellmanFord(edges, n, start);
+    if(distance[start] == -1) {
+        cout << "Negative Cycle Detected\n";
+        return;
+    }
+    for(int i = 0; i < n; i ++) {
+        if(distance[i] == INF) cout << "Unreachable ";
+        else cout << distance[i] << ' ';
+    }
+    cout << '\n';
 }
 
 int32_t main() {
