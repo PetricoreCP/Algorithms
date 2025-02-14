@@ -57,7 +57,7 @@ struct Dsu {
             swap(u, v);
         }
         sz[u] += sz[v];
-        parents[v] = u;
+        parent[v] = u;
         return true;
     }
     bool same(int u, int v) {
