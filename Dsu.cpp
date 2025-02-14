@@ -60,4 +60,7 @@ struct Dsu {
         parents[v] = u;
         return true;
     }
+    bool same(int u, int v) {
+        return find(u) == find(v);
+    }
 };
