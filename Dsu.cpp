@@ -33,3 +33,31 @@ public:
         return true;
     }
 };
+
+struct Dsu {
+    vector<int> parent, sz;
+    Dsu(int n) {
+        parent.resize(n);
+        sz.resize(n, 1);
+        iota(parent.begin(), parent.end(), 0);
+    }
+    int find(int u) {
+        while (parent[u] != u) {
+            parent[u] = find(parent[u]);
+        }
+        return parent[u];
+    }
+    bool join(int u, int v) {
+        u = find(u);
+        v = find(v);   
+        if (u == v) {
+            return false;
+        }
+        if (sz[u] < sz[v]) {
+            swap(u, v);
+        }
+        sz[u] += sz[v];
+        parents[v] = u;
+        return true;
+    }
+};
