@@ -52,7 +52,7 @@ vector<cx> ifft(vector<cx>& p_val) {
     return p;
 }
 
-vector<ll> FFT(vector<ll>& p, vector<ll>& q) {
+vector<ll> convolution(vector<ll>& p, vector<ll>& q) {
     int n = 1;
     while (n < p.size() + q.size() - 1) {
         n <<= 1;
@@ -90,7 +90,7 @@ int main() {
     for (int i = 0; i < m; i ++) {
         cin >> q[i];
     }
-    vector<ll> r = FFT(p, q);
+    vector<ll> r = convolution(p, q);
     for (int i = 0; i < n + m - 1; i ++) {
         cout << r[i] << ' ';
     }
