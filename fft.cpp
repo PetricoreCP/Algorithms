@@ -52,7 +52,8 @@ vector<cx> ifft(vector<cx>& p_val) {
     return p;
 }
 
-vector<ll> convolution(vector<ll>& p, vector<ll>& q) {
+template<typename T>
+vector<T> convolution(vector<T>& p, vector<T>& q) {
     int n = 1;
     while (n < p.size() + q.size() - 1) {
         n <<= 1;
@@ -71,7 +72,7 @@ vector<ll> convolution(vector<ll>& p, vector<ll>& q) {
         r_val[i] = p_val[i] * q_val[i];
     }
     vector<cx> r_cx = ifft(r_val);
-    vector<ll> r(n);
+    vector<T> r(n);
     for (int i = 0; i < n; i ++) {
         r[i] = round(r_cx[i].real());
     }
